@@ -1,0 +1,13 @@
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\bin\Debug\net8.0\DomainLayer.deps.json
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\bin\Debug\net8.0\DomainLayer.dll
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\bin\Debug\net8.0\DomainLayer.pdb
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\obj\Debug\net8.0\DomainLayer.csproj.AssemblyReference.cache
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\obj\Debug\net8.0\DomainLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\obj\Debug\net8.0\DomainLayer.AssemblyInfoInputs.cache
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\obj\Debug\net8.0\DomainLayer.AssemblyInfo.cs
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\obj\Debug\net8.0\DomainLayer.csproj.CoreCompileInputs.cache
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\obj\Debug\net8.0\DomainLayer.sourcelink.json
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\obj\Debug\net8.0\DomainLayer.dll
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\obj\Debug\net8.0\refint\DomainLayer.dll
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\obj\Debug\net8.0\DomainLayer.pdb
+C:\CSharp_Avanzado\TaskWebApi\DomainLayer\obj\Debug\net8.0\ref\DomainLayer.dll
