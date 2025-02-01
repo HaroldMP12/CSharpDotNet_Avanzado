@@ -31,6 +31,41 @@ namespace ApplicationLayer.Services.TaskServices
 
         }
 
+        public async Task<Response<TaskData>> GetPendingTasksAsync()
+        {
+            var response = new Response<TaskData>();
+
+            try
+            {
+              
+                var allTasks = await _commonProcess.GetAllAsync();
+
+                
+                var pendingTasks = allTasks
+                    .Where(task => task.Status == "Pendiente")
+                    .ToList();
+
+                if (pendingTasks.Any())
+                {
+                    response.DataList = pendingTasks;
+                    response.Successful = true;
+                }
+                else
+                {
+                    response.Successful = false;
+                    response.Message = "No hay tareas pendientes.";
+                }
+            }
+            catch (Exception e)
+            {
+                response.Errors.Add(e.Message);
+                response.Successful = false;
+            }
+
+            return response;
+        }
+
+
         public async Task<Response<TaskData>> GetTaskByIdAllAsync(int id)
         {
             var response = new Response<TaskData>();
@@ -60,19 +95,28 @@ namespace ApplicationLayer.Services.TaskServices
 
         public async Task<Response<string>> AddTaskAllAsync(TaskData taskData)
         {
+
             var response = new Response<string>();
 
             try
             {
+                if (!TaskValidator.validate(taskData))
+                {
+                    response.Successful = false;
+                    response.Message = "La tarea no es válida. Asegúrate de que tenga una descripción y una fecha futura.";
+                    return response;
+                }
                 var result = await _commonProcess.AddAsync(taskData);
                 response.Message = result.Message;
                 response.Successful = result.IsSuccess;
+
+                TaskNotifier.NotifyCreation(taskData);
             }
             catch (Exception e)
             {
-
                 response.Errors.Add(e.Message);
             }
+
             return response;
 
         }

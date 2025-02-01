@@ -23,6 +23,22 @@ namespace TaskWebApi.Controllers
         public async Task<ActionResult<Response<TaskData>>> GetTaskByIdAllAsync(int id)
             => await _service.GetTaskByIdAllAsync(id);
 
+        [HttpGet("pending")]
+        public async Task<ActionResult<Response<TaskData>>> GetPendingTasks()
+        {
+            var result = await _service.GetPendingTasksAsync();
+           
+            if (result.Successful && result.DataList != null && result.DataList.Any())
+            {
+                return Ok(result);  
+            }
+            else
+            {
+                return NoContent();
+            }
+        }
+
+
         [HttpPost]
         public async Task<ActionResult<Response<string>>> AddTaskAllAsync(TaskData taskData)
             => await _service.AddTaskAllAsync(taskData);

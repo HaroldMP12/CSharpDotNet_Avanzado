@@ -124,6 +124,26 @@
     ]
   },
   {
+    "ContainingType": "TaskWebApi.Controllers.TaskController",
+    "Method": "GetPendingTasks",
+    "RelativePath": "api/Task/pending",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "DomainLayer.DTO.Response\u00601[[DomainLayer.Models.TaskData, DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "TaskWebApi.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",
