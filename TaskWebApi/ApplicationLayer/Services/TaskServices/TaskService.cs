@@ -31,6 +31,53 @@ namespace ApplicationLayer.Services.TaskServices
 
         }
 
+        //Factory Pattern
+
+        public async Task<Response<string>> AddHighPriorityTaskAsync(string description)
+        {
+            var response = new Response<string>();
+
+            try
+            {
+                var task = FactoryPattern.CreateHighPriorityTask(description);
+
+                var result = await _commonProcess.AddAsync(task);
+                response.Message = result.Message;
+                response.Successful = result.IsSuccess;
+
+                TaskNotifier.NotifyCreation(task);
+            }
+            catch (Exception e)
+            {
+                response.Errors.Add(e.Message);
+            }
+
+            return response;
+        }
+
+        public async Task<Response<string>> AddLowPriorityTaskAsync(string description)
+        {
+            var response = new Response<string>();
+
+            try
+            {
+                var task = FactoryPattern.CreateLowPriorityTask(description); 
+
+                var result = await _commonProcess.AddAsync(task);
+                response.Message = result.Message;
+                response.Successful = result.IsSuccess;
+
+                TaskNotifier.NotifyCreation(task);
+            }
+            catch (Exception e)
+            {
+                response.Errors.Add(e.Message);
+            }
+
+            return response;
+        }
+
+
         public async Task<Response<TaskData>> GetPendingTasksAsync()
         {
             var response = new Response<TaskData>();

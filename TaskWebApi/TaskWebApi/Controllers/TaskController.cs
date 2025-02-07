@@ -50,5 +50,14 @@ namespace TaskWebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Response<string>>> DeleteTaskAllAsync(int id)
             => await _service.DeleteTaskAllAsync(id);
+
+        [HttpPost("high-priority")]
+        public async Task<ActionResult<Response<string>>> AddHighPriorityTaskAsync([FromBody] string description)
+    => await _service.AddHighPriorityTaskAsync(description);
+
+        [HttpPost("low-priority")]
+        public async Task<ActionResult<Response<string>>> AddLowPriorityTaskAsync([FromBody] string description)
+            => await _service.AddLowPriorityTaskAsync(description);
+
     }
 }
