@@ -7,10 +7,12 @@ namespace ApplicationLayer.Services.TaskServices
     public class TaskService
     {
         private readonly ICommonProcess<TaskData> _commonProcess;
+        private readonly TaskSeqService _taskSeqService;
 
-        public TaskService(ICommonProcess<TaskData> commonProcess)
+        public TaskService(ICommonProcess<TaskData> commonProcess, TaskSeqService taskSeqService)
         {
             _commonProcess = commonProcess;
+            _taskSeqService = taskSeqService;
         }
 
         public async Task<Response<TaskData>> GetTaskAllAsync()
@@ -41,12 +43,14 @@ namespace ApplicationLayer.Services.TaskServices
             {
                 var task = FactoryPattern.CreateHighPriorityTask(description);
 
+
                 var result = await _commonProcess.AddAsync(task);
                 response.Message = result.Message;
                 response.Successful = result.IsSuccess;
 
                 TaskNotifier.NotifyCreation(task);
             }
+
             catch (Exception e)
             {
                 response.Errors.Add(e.Message);
@@ -62,6 +66,7 @@ namespace ApplicationLayer.Services.TaskServices
             try
             {
                 var task = FactoryPattern.CreateLowPriorityTask(description); 
+
 
                 var result = await _commonProcess.AddAsync(task);
                 response.Message = result.Message;
