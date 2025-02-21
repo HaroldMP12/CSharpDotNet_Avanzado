@@ -18,21 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TaskService.cs",
-              "DocumentMoniker": "C:\\CSharp_Avanzado\\TaskWebApi\\ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
-              "RelativeDocumentMoniker": "ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
-              "ToolTip": "C:\\CSharp_Avanzado\\TaskWebApi\\ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
-              "RelativeToolTip": "ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T23:58:32.393Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -43,13 +30,26 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TaskService.cs",
+              "DocumentMoniker": "C:\\CSharp_Avanzado\\TaskWebApi\\ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
+              "RelativeDocumentMoniker": "ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
+              "ToolTip": "C:\\CSharp_Avanzado\\TaskWebApi\\ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
+              "RelativeToolTip": "ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAswJEAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T23:58:32.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "TaskSeqService.cs",
               "DocumentMoniker": "C:\\CSharp_Avanzado\\TaskWebApi\\ApplicationLayer\\Services\\TaskServices\\TaskSeqService.cs",
               "RelativeDocumentMoniker": "ApplicationLayer\\Services\\TaskServices\\TaskSeqService.cs",
               "ToolTip": "C:\\CSharp_Avanzado\\TaskWebApi\\ApplicationLayer\\Services\\TaskServices\\TaskSeqService.cs",
               "RelativeToolTip": "ApplicationLayer\\Services\\TaskServices\\TaskSeqService.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBwAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-15T23:54:29.5Z",
               "EditorCaption": ""

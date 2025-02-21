@@ -43,14 +43,16 @@ namespace ApplicationLayer.Services.TaskServices
             {
                 var task = FactoryPattern.CreateHighPriorityTask(description);
 
-
+                _taskSeqService.EnqueueTask(async () =>
+                {
                 var result = await _commonProcess.AddAsync(task);
                 response.Message = result.Message;
                 response.Successful = result.IsSuccess;
 
-                TaskNotifier.NotifyCreation(task);
+                if (result.IsSuccess)
+                    TaskNotifier.NotifyCreation(task);
+                });
             }
-
             catch (Exception e)
             {
                 response.Errors.Add(e.Message);
@@ -65,15 +67,19 @@ namespace ApplicationLayer.Services.TaskServices
 
             try
             {
-                var task = FactoryPattern.CreateLowPriorityTask(description); 
+                var task = FactoryPattern.CreateLowPriorityTask(description);
 
+                _taskSeqService.EnqueueTask(async () =>
+                {
+                    var result = await _commonProcess.AddAsync(task);
+                    response.Message = result.Message;
+                    response.Successful = result.IsSuccess;
 
-                var result = await _commonProcess.AddAsync(task);
-                response.Message = result.Message;
-                response.Successful = result.IsSuccess;
-
-                TaskNotifier.NotifyCreation(task);
+                    if (result.IsSuccess)
+                        TaskNotifier.NotifyCreation(task);
+                });
             }
+
             catch (Exception e)
             {
                 response.Errors.Add(e.Message);
@@ -158,11 +164,16 @@ namespace ApplicationLayer.Services.TaskServices
                     response.Message = "La tarea no es válida. Asegúrate de que tenga una descripción y una fecha futura.";
                     return response;
                 }
-                var result = await _commonProcess.AddAsync(taskData);
-                response.Message = result.Message;
-                response.Successful = result.IsSuccess;
 
-                TaskNotifier.NotifyCreation(taskData);
+                _taskSeqService.EnqueueTask(async () =>
+                {
+                    var result = await _commonProcess.AddAsync(taskData);
+                    response.Message = result.Message;
+                    response.Successful = result.IsSuccess;
+
+                    if(result.IsSuccess)
+                       TaskNotifier.NotifyCreation(taskData);
+                });
             }
             catch (Exception e)
             {
@@ -179,9 +190,12 @@ namespace ApplicationLayer.Services.TaskServices
 
             try
             {
-                var result = await _commonProcess.UpdateAsync(taskData);
-                response.Message = result.Message;
-                response.Successful = result.IsSuccess;
+                _taskSeqService.EnqueueTask(async () =>
+                {
+                    var result = await _commonProcess.UpdateAsync(taskData);
+                    response.Message = result.Message;
+                    response.Successful = result.IsSuccess;
+                });
             }
             catch (Exception e)
             {
@@ -198,9 +212,12 @@ namespace ApplicationLayer.Services.TaskServices
 
             try
             {
-                var result = await _commonProcess.DeleteAsync(id);
-                response.Message = result.Message;
-                response.Successful = result.IsSuccess;
+                _taskSeqService.EnqueueTask(async () =>
+                {
+                    var result = await _commonProcess.DeleteAsync(id);
+                    response.Message = result.Message;
+                    response.Successful = result.IsSuccess;
+                });
             }
             catch (Exception e)
             {

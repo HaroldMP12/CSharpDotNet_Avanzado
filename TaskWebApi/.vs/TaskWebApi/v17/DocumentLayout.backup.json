@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\CSharp_Avanzado\\TaskWebApi\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1DFF9C17-4987-4199-ADF4-F81DBFD177AA}|ApplicationLayer\\ApplicationLayer.csproj|c:\\csharp_avanzado\\taskwebapi\\applicationlayer\\services\\taskservices\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DFF9C17-4987-4199-ADF4-F81DBFD177AA}|ApplicationLayer\\ApplicationLayer.csproj|solutionrelative:applicationlayer\\services\\taskservices\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1DFF9C17-4987-4199-ADF4-F81DBFD177AA}|ApplicationLayer\\ApplicationLayer.csproj|c:\\csharp_avanzado\\taskwebapi\\applicationlayer\\services\\taskservices\\taskseqservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1DFF9C17-4987-4199-ADF4-F81DBFD177AA}|ApplicationLayer\\ApplicationLayer.csproj|solutionrelative:applicationlayer\\services\\taskservices\\taskseqservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +27,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TaskService.cs",
+              "DocumentMoniker": "C:\\CSharp_Avanzado\\TaskWebApi\\ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
+              "RelativeDocumentMoniker": "ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
+              "ToolTip": "C:\\CSharp_Avanzado\\TaskWebApi\\ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
+              "RelativeToolTip": "ApplicationLayer\\Services\\TaskServices\\TaskService.cs",
+              "ViewState": "AgIAANUAAAAAAAAAAAAIwN4AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T23:58:32.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TaskSeqService.cs",
+              "DocumentMoniker": "C:\\CSharp_Avanzado\\TaskWebApi\\ApplicationLayer\\Services\\TaskServices\\TaskSeqService.cs",
+              "RelativeDocumentMoniker": "ApplicationLayer\\Services\\TaskServices\\TaskSeqService.cs",
+              "ToolTip": "C:\\CSharp_Avanzado\\TaskWebApi\\ApplicationLayer\\Services\\TaskServices\\TaskSeqService.cs",
+              "RelativeToolTip": "ApplicationLayer\\Services\\TaskServices\\TaskSeqService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T23:54:29.5Z",
+              "EditorCaption": ""
             }
           ]
         }
