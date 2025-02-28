@@ -8,6 +8,7 @@ namespace ApplicationLayer.Services.TaskServices
     {
         private readonly ICommonProcess<TaskData> _commonProcess;
         private readonly TaskSeqService _taskSeqService;
+        private readonly Dictionary<string, List<TaskData>> _taskCache = new();
 
         public TaskService(ICommonProcess<TaskData> commonProcess, TaskSeqService taskSeqService)
         {
@@ -21,7 +22,17 @@ namespace ApplicationLayer.Services.TaskServices
 
             try
             {
+                string cacheKey = "allTasks";
+
+                if (_taskCache.ContainsKey(cacheKey))
+                {
+                    response.DataList = _taskCache[cacheKey];
+                    response.Successful = true;
+                    return response;
+                }
+
                 response.DataList = await _commonProcess.GetAllAsync();
+                _taskCache[cacheKey] = response.DataList.ToList();
                 response.Successful = true;
             }
             catch (Exception e)
@@ -87,15 +98,21 @@ namespace ApplicationLayer.Services.TaskServices
 
             return response;
         }
-
-
         public async Task<Response<TaskData>> GetPendingTasksAsync()
         {
             var response = new Response<TaskData>();
 
             try
             {
-              
+                string cacheKey = "pendingTasks";
+
+                if (_taskCache.ContainsKey(cacheKey))
+                {
+                    response.DataList = _taskCache[cacheKey];
+                    response.Successful = true;
+                    return response;
+                }
+
                 var allTasks = await _commonProcess.GetAllAsync();
 
                 
@@ -107,6 +124,7 @@ namespace ApplicationLayer.Services.TaskServices
                 {
                     response.DataList = pendingTasks;
                     response.Successful = true;
+                    _taskCache[cacheKey] = response.DataList.ToList();
                 }
                 else
                 {
@@ -122,8 +140,6 @@ namespace ApplicationLayer.Services.TaskServices
 
             return response;
         }
-
-
         public async Task<Response<TaskData>> GetTaskByIdAllAsync(int id)
         {
             var response = new Response<TaskData>();
@@ -150,7 +166,6 @@ namespace ApplicationLayer.Services.TaskServices
             return response;
 
         }
-
         public async Task<Response<string>> AddTaskAllAsync(TaskData taskData)
         {
 
@@ -183,7 +198,6 @@ namespace ApplicationLayer.Services.TaskServices
             return response;
 
         }
-
         public async Task<Response<string>> UpdateTaskAllAsync(TaskData taskData)
         {
             var response = new Response<string>();
@@ -205,7 +219,6 @@ namespace ApplicationLayer.Services.TaskServices
             return response;
 
         }
-
         public async Task<Response<string>> DeleteTaskAllAsync(int id)
         {
             var response = new Response<string>();
@@ -225,7 +238,6 @@ namespace ApplicationLayer.Services.TaskServices
                 response.Errors.Add(e.Message);
             }
             return response;
-
         }
     }
 }

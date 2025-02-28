@@ -21,6 +21,8 @@ namespace TaskWebApi
 
             builder.Services.AddScoped<ICommonProcess<TaskData>, TaskRepositorio>();
             builder.Services.AddScoped<TaskService>();
+            builder.Services.AddScoped<TaskSeqService>();
+            builder.Services.AddScoped<TaskService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
