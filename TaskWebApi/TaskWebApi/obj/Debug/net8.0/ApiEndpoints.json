@@ -151,6 +151,22 @@
   },
   {
     "ContainingType": "TaskWebApi.Controllers.TaskController",
+    "Method": "Login",
+    "RelativePath": "api/Task/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginModel",
+        "Type": "DomainLayer.Models.LoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskWebApi.Controllers.TaskController",
     "Method": "AddLowPriorityTaskAsync",
     "RelativePath": "api/Task/low-priority",
     "HttpMethod": "POST",

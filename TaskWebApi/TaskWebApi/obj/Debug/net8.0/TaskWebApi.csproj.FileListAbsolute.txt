@@ -146,3 +146,4 @@ C:\CSharp_Avanzado\TaskWebApi\TaskWebApi\bin\Debug\net8.0\DomainLayer.pdb
 C:\CSharp_Avanzado\TaskWebApi\TaskWebApi\bin\Debug\net8.0\ApplicationLayer.dll
 C:\CSharp_Avanzado\TaskWebApi\TaskWebApi\bin\Debug\net8.0\ApplicationLayer.pdb
 C:\CSharp_Avanzado\TaskWebApi\TaskWebApi\bin\Debug\net8.0\System.Reactive.dll
+C:\CSharp_Avanzado\TaskWebApi\TaskWebApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
