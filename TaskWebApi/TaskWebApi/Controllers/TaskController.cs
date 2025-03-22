@@ -1,12 +1,15 @@
 ﻿using ApplicationLayer.Services.TaskServices;
 using DomainLayer.DTO;
 using DomainLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using TaskWebApi.Hubs;
 
 namespace TaskWebApi.Controllers
 {
@@ -15,50 +18,42 @@ namespace TaskWebApi.Controllers
     public class TaskController : ControllerBase
     {
         private readonly TaskService _service;
-        private readonly IConfiguration _configuration;
-        public TaskController(TaskService service, IConfiguration configuration)
+        private readonly IConfiguration _config;
+        private readonly IHubContext<TaskHub> _hubContext;
+        public TaskController(TaskService service, IConfiguration config, IHubContext<TaskHub> hubContext)
         {
             _service = service;
-            _configuration = configuration;
+            _config = config;
+            _hubContext = hubContext;
         }
 
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginModel loginModel)
+        [HttpPost("Login")]
+        public IActionResult Login([FromBody] LoginModel user)
         {
-            // Validar las credenciales del usuario (esto debería ser con base de datos)
-            if (loginModel.Username == "admin" && loginModel.Password == "password") // Simulación
+            if (user.Username == "admin" && user.Password == "password")
             {
-                var token = GenerateJwtToken(loginModel.Username);
-                return Ok(new { Token = token });
+                var token = GenerateJwtToken(user.Username);
+                return Ok(new { token });
             }
-
-            return Unauthorized("Usuario o contraseña incorrectos.");
+            return Unauthorized("Credenciales incorrectas");
         }
 
         private string GenerateJwtToken(string username)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, username),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("role", "Admin") // Agregar roles si es necesario
-            };
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new[] { new Claim(ClaimTypes.Name, username) };
 
             var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
-                signingCredentials: creds);
+                _config["Jwt:Issuer"],
+                _config["Jwt:Audience"],
+                claims,
+                expires: DateTime.UtcNow.AddMinutes(60),
+                signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-
 
         [HttpGet]
         public async Task<ActionResult<Response<TaskData>>> GetTaskAllAsync()
@@ -72,17 +67,19 @@ namespace TaskWebApi.Controllers
         public async Task<ActionResult<Response<TaskData>>> GetPendingTasks()
         {
             var result = await _service.GetPendingTasksAsync();
-           
+
             if (result.Successful && result.DataList != null && result.DataList.Any())
             {
-                return Ok(result);  
+                // Notificar a los clientes conectados que se consultaron tareas pendientes
+                await _hubContext.Clients.All.SendAsync("ReceiveTaskUpdate", $"Se consultaron las tareas pendientes.");
+
+                return Ok(result);
             }
             else
             {
                 return NoContent();
             }
         }
-
 
         [HttpPost]
         public async Task<ActionResult<Response<string>>> AddTaskAllAsync(TaskData taskData)

@@ -152,13 +152,13 @@
   {
     "ContainingType": "TaskWebApi.Controllers.TaskController",
     "Method": "Login",
-    "RelativePath": "api/Task/login",
+    "RelativePath": "api/Task/Login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "loginModel",
+        "Name": "user",
         "Type": "DomainLayer.Models.LoginModel",
         "IsRequired": true
       }

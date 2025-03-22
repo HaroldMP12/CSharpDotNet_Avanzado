@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Task/login": {
+    "/api/Task/Login": {
       "post": {
         "tags": [
           "Task"
@@ -542,6 +542,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Por favor introduzca el token: ",
+        "name": "Authorization",
+        "in": "header"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }
